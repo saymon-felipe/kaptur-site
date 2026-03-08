@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-// Interfaces mantidas
 interface ContactFormData {
     name: string;
     email: string;
@@ -33,7 +32,6 @@ const faqData: FAQItem[] = [
 ];
 
 const Support: React.FC = () => {
-    // Estado do Formulário
     const [formData, setFormData] = useState<ContactFormData>({
         name: '',
         email: '',
@@ -43,50 +41,35 @@ const Support: React.FC = () => {
     const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
     const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
 
-    // --- MÁSCARA DE TELEFONE (NOVO) ---
     const phoneMask = (value: string) => {
         if (!value) return "";
-        
-        // Remove tudo o que não é dígito
         value = value.replace(/\D/g, '');
-        
-        // Limita a 11 dígitos (DDD + 9 números)
         value = value.substring(0, 11);
-
-        // Aplica a formatação
-        value = value.replace(/^(\d{2})(\d)/g, '($1) $2'); // (11) 9...
-        value = value.replace(/(\d)(\d{4})$/, '$1-$2'); // ...-1234
-
+        value = value.replace(/^(\d{2})(\d)/g, '($1) $2');
+        value = value.replace(/(\d)(\d{4})$/, '$1-$2');
         return value;
     }
 
-    // Manipulação dos inputs com aplicação da máscara
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         let { name, value } = e.target;
-
-        // Se for o campo de telefone, aplica a máscara
         if (name === 'tel') {
             value = phoneMask(value);
         }
-
         setFormData({ ...formData, [name]: value });
     };
 
-    // Alternar FAQ
     const toggleFaq = (index: number) => {
         setOpenFaqIndex(openFaqIndex === index ? null : index);
     };
 
-    // Envio do formulário
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setStatus('submitting');
 
         const payload = {
             ...formData,
-            // Remove a formatação ao enviar, mantendo apenas números (opcional, mas recomendado para APIs)
             tel: formData.tel.replace(/\D/g, ''), 
-            requestType: "solutto-recorder"
+            requestType: "kaptur"
         };
 
         try {
@@ -112,18 +95,18 @@ const Support: React.FC = () => {
 
     return (
         <div className="bg-gray-50 text-gray-800 font-sans pt-20">
-            {/* Header Section */}
-            <section className="relative overflow-hidden pt-16 pb-12 lg:pt-24 lg:pb-20 bg-[#003B5C]">
+            {/* Mudança: Cores de background atualizadas */}
+            <section className="relative overflow-hidden pt-16 pb-12 lg:pt-24 lg:pb-20 bg-[#2D1B4E]">
                 <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
                      <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-teal-500 opacity-20 blur-3xl"></div>
-                     <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-blue-400 opacity-10 blur-3xl"></div>
+                     <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-purple-400 opacity-10 blur-3xl"></div>
                 </div>
                 
                 <div className="container mx-auto px-4 relative z-10 text-center text-white">
                     <h1 className="text-4xl md:text-5xl font-extrabold mb-6">
                         Central de <span className="text-[#00C0A3]">Suporte.</span>
                     </h1>
-                    <p className="text-lg text-blue-100 max-w-2xl mx-auto">
+                    <p className="text-lg text-purple-100 max-w-2xl mx-auto">
                         Encontre respostas rápidas para problemas comuns ou entre em contato direto com nosso time de engenharia.
                     </p>
                 </div>
@@ -132,9 +115,8 @@ const Support: React.FC = () => {
             <div className="container mx-auto px-4 py-16">
                 <div className="grid lg:grid-cols-2 gap-16">
                     
-                    {/* Coluna da Esquerda: FAQ */}
                     <div>
-                        <h2 className="text-2xl font-bold text-[#003B5C] mb-8 flex items-center gap-3">
+                        <h2 className="text-2xl font-bold text-[#2D1B4E] mb-8 flex items-center gap-3">
                             <i className="fa-solid fa-circle-question text-[#00C0A3]"></i>
                             Perguntas Frequentes
                         </h2>
@@ -160,10 +142,9 @@ const Support: React.FC = () => {
                         </div>
                     </div>
 
-                    {/* Coluna da Direita: Formulário */}
                     <div>
                         <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
-                            <h2 className="text-2xl font-bold text-[#003B5C] mb-2">Ainda precisa de ajuda?</h2>
+                            <h2 className="text-2xl font-bold text-[#2D1B4E] mb-2">Ainda precisa de ajuda?</h2>
                             <p className="text-gray-500 mb-8 text-sm">Preencha o formulário abaixo. Nossa equipe responde em até 24h.</p>
 
                             {status === 'success' ? (
@@ -185,7 +166,6 @@ const Support: React.FC = () => {
                                             required
                                             value={formData.name}
                                             onChange={handleChange}
-                                            // As classes aqui pegarão o estilo global definido no index.css
                                         />
                                     </div>
 
@@ -210,7 +190,7 @@ const Support: React.FC = () => {
                                                 value={formData.tel}
                                                 onChange={handleChange}
                                                 placeholder="(11) 99999-9999"
-                                                maxLength={15} // Limite de segurança visual
+                                                maxLength={15} 
                                             />
                                         </div>
                                     </div>
@@ -238,7 +218,7 @@ const Support: React.FC = () => {
                                         type="submit" 
                                         disabled={status === 'submitting'}
                                         className={`w-full py-4 rounded-lg font-bold text-white shadow-lg transition-all flex items-center justify-center gap-2
-                                            ${status === 'submitting' ? 'bg-gray-400 cursor-not-allowed' : 'bg-[#003B5C] hover:bg-[#002a42] hover:shadow-xl hover:-translate-y-1'}
+                                            ${status === 'submitting' ? 'bg-gray-400 cursor-not-allowed' : 'bg-[#2D1B4E] hover:bg-[#1D1036] hover:shadow-xl hover:-translate-y-1'}
                                         `}
                                     >
                                         {status === 'submitting' ? (

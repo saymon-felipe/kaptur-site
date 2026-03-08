@@ -2,10 +2,6 @@ import React, { useState } from 'react';
 import { ChangelogItem, Feature } from '../types';
 import { Link } from 'react-router-dom';
 
-// Colors derived from Solutto Brand
-// Primary: #003B5C (Deep Blue)
-// Accent: #00C0A3 (Teal/Green)
-
 const features: Feature[] = [
     {
         title: "Gravação Flexível",
@@ -34,7 +30,7 @@ const changelogData: ChangelogItem[] = [
         version: "v3.1.0",
         date: "25/12/2025",
         type: "major",
-        changes: ["Reestruturação completa + Solutto Studio", "Reestruturação do código, repaginação visual, melhoria de fluxo e lançamento do Solutto Studio."]
+        changes: ["Reestruturação completa + Kaptur Studio", "Reestruturação do código, repaginação visual, melhoria de fluxo e lançamento do Studio."]
     },
     {
         version: "v3.0.5",
@@ -52,7 +48,7 @@ const changelogData: ChangelogItem[] = [
         version: "v1.0.0",
         date: "19/03/2025",
         type: "major",
-        changes: ["Lançamento do Solutto Recorder", "Gravação de tela e webcam, edição simples e upload para Google Drive."]
+        changes: ["Lançamento do Kaptur", "Gravação de tela e webcam, edição simples e upload para Google Drive."]
     }
 ];
 
@@ -64,21 +60,19 @@ const Home: React.FC = () => {
     return (
         <div className="bg-gray-50 text-gray-800 font-sans pt-20">
             
-            {/* HERO SECTION */}
             <section className="relative overflow-hidden pt-16 pb-20 lg:pt-24 lg:pb-32">
-                {/* Abstract Background Shapes */}
                 <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-teal-100 opacity-50 blur-3xl"></div>
-                <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-blue-100 opacity-50 blur-3xl"></div>
+                <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-purple-100 opacity-50 blur-3xl"></div>
 
                 <div className="container mx-auto px-4 relative z-10">
                     <div className="flex flex-col lg:flex-row items-center gap-12">
                         
-                        {/* Text Content */}
                         <div className="lg:w-1/2 text-center lg:text-left">
-                            <div className="inline-block px-4 py-1.5 mb-6 text-sm font-semibold tracking-wider text-[#003B5C] uppercase bg-blue-100 rounded-full">
+                            {/* Mudança: Cores atualizadas */}
+                            <div className="inline-block px-4 py-1.5 mb-6 text-sm font-semibold tracking-wider text-[#2D1B4E] uppercase bg-purple-100 rounded-full">
                                 Extensão para Chrome
                             </div>
-                            <h1 className="text-4xl md:text-6xl font-extrabold text-[#003B5C] leading-tight mb-6">
+                            <h1 className="text-4xl md:text-6xl font-extrabold text-[#2D1B4E] leading-tight mb-6">
                                 Grave, Edite e Compartilhe em <span className="text-teal-500">Segundos.</span>
                             </h1>
                             <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-lg mx-auto lg:mx-0">
@@ -86,12 +80,12 @@ const Home: React.FC = () => {
                             </p>
                             
                             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-                                <button className="px-8 py-4 bg-[#003B5C] hover:bg-[#002a42] text-white text-lg font-bold rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 flex items-center">
-                                    <a href="https://chromewebstore.google.com/detail/pinkdfghepfkmnimdkcbbifhimkipdlp/" target="_blank" className="flex items-center gap-3">
-                                        <i className="fa-brands fa-chrome text-2xl"></i>
-                                        Adicionar ao Chrome
-                                    </a>
-                                </button>
+                                <Link to="/download">
+                                    <button className="px-8 py-4 bg-[#2D1B4E] hover:bg-[#1D1036] text-white text-lg font-bold rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 flex items-center gap-3">
+                                        <i className="fa-solid fa-download text-2xl"></i>
+                                        Instalar Extensão
+                                    </button>
+                                </Link>
                                 <button 
                                     onClick={() => setShowChangelog(true)}
                                     className="px-8 py-4 bg-white border-2 border-gray-200 text-gray-700 font-bold rounded-lg hover:border-teal-500 hover:text-teal-600 transition-colors flex items-center gap-2"
@@ -113,34 +107,35 @@ const Home: React.FC = () => {
                             </div>
                         </div>
 
-                        {/* Hero Image / Mockup */}
                         <div className="lg:w-1/2 w-full relative">
-                            <div className="relative rounded-xl shadow-2xl bg-white border border-gray-200 p-2 overflow-hidden transform rotate-1 hover:rotate-0 transition-transform duration-500">
-                                {/* Browser Header Mockup */}
-                                <div className="bg-gray-100 h-8 rounded-t-lg flex items-center px-4 space-x-2 border-b">
-                                    <div className="w-3 h-3 rounded-full bg-red-400"></div>
-                                    <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
-                                    <div className="w-3 h-3 rounded-full bg-green-400"></div>
-                                    <div className="ml-4 bg-white flex-1 h-5 rounded-md text-xs flex items-center px-2 text-gray-400">solutto.com.br</div>
-                                </div>
-                                <img 
-                                    src="/assets/images/print-solutto.png" 
-                                    alt="Solutto Recorder Interface" 
-                                    className="w-full h-auto rounded-b-lg opacity-90"
-                                />
+                            {/* O container principal faz a rotação, mas não tem overflow-hidden */}
+                            <div className="relative transform rotate-1 hover:rotate-0 transition-transform duration-500">
                                 
-                                {/* Floating Overlay UI Mockup - Exact Replica of Extension Popup */}
-                                <div className="absolute top-8 right-8 bg-white rounded-lg shadow-2xl w-72 md:w-80 border border-gray-200 animate-fade-in-up flex flex-col font-sans select-none">
+                                {/* Container do navegador (este sim tem overflow-hidden para arredondar a imagem) */}
+                                <div className="rounded-xl shadow-2xl bg-white border border-gray-200 p-2 overflow-hidden">
+                                    {/* Browser Header Mockup */}
+                                    <div className="bg-gray-100 h-8 rounded-t-lg flex items-center px-4 space-x-2 border-b">
+                                        <div className="w-3 h-3 rounded-full bg-red-400"></div>
+                                        <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
+                                        <div className="w-3 h-3 rounded-full bg-green-400"></div>
+                                        <div className="ml-4 bg-white flex-1 h-5 rounded-md text-xs flex items-center px-2 text-gray-400">kaptur.com.br</div>
+                                    </div>
+                                    <img 
+                                        src="/assets/images/print-kaptur.png" 
+                                        alt="Kaptur Interface" 
+                                        className="w-full h-auto rounded-b-lg opacity-90"
+                                    />
+                                </div>
+                                
+                                {/* Floating Overlay UI Mockup - Extravasando a tela (-right-10) */}
+                                <div className="absolute top-8 -right-4 md:-right-10 lg:-right-12 bg-white rounded-lg shadow-2xl w-72 md:w-80 border border-gray-200 animate-fade-in-up flex flex-col font-sans select-none z-20">
                                     
                                     {/* Header */}
                                     <div className="flex items-center justify-between p-4 border-b border-gray-100">
                                         <div className="flex items-center gap-2">
-                                            {/* Simulated Solutto Icon */}
-                                            <div className="relative w-6 h-6 bg-[#003B5C] rounded flex items-center justify-center overflow-hidden">
-                                                 <div className="w-2 h-2 bg-red-500 rounded-full absolute bottom-1 right-1"></div>
-                                                 <span className="text-white text-xs font-bold relative z-10">S</span>
-                                            </div>
-                                            <h3 className="font-bold text-gray-700 text-base">Solutto Recorder</h3>
+                                            {/* Ícone Kaptur Oficial */}
+                                            <img src="/assets/images/logo.png" alt="Kaptur Icon" className="w-7 h-7 object-contain" />
+                                            <h3 className="font-bold text-gray-700 text-base">Kaptur</h3>
                                         </div>
                                         <i className="fa-solid fa-xmark text-gray-300 hover:text-gray-500 cursor-pointer text-lg"></i>
                                     </div>
@@ -222,11 +217,10 @@ const Home: React.FC = () => {
                 </div>
             </section>
 
-            {/* FEATURES GRID */}
             <section className="py-20 bg-white">
                 <div className="container mx-auto px-4">
                     <div className="text-center mb-16">
-                        <h2 className="text-3xl md:text-4xl font-bold text-[#003B5C] mb-4">Poderoso. Simples.</h2>
+                        <h2 className="text-3xl md:text-4xl font-bold text-[#2D1B4E] mb-4">Poderoso. Simples.</h2>
                         <p className="text-gray-600 max-w-2xl mx-auto">
                             Tudo o que você precisa para criar vídeos rápidos de comunicação, tutoriais ou reportar bugs.
                         </p>
@@ -246,8 +240,7 @@ const Home: React.FC = () => {
                 </div>
             </section>
 
-            {/* HOW IT WORKS (Few Clicks Focus) */}
-            <section className="py-20 bg-[#003B5C] text-white">
+            <section className="py-20 bg-[#2D1B4E] text-white">
                 <div className="container mx-auto px-4">
                     <div className="flex flex-col md:flex-row items-center justify-between gap-12">
                         <div className="md:w-1/2">
@@ -257,21 +250,21 @@ const Home: React.FC = () => {
                                     <div className="flex-shrink-0 w-10 h-10 rounded-full bg-teal-500 flex items-center justify-center font-bold text-lg">1</div>
                                     <div>
                                         <h4 className="font-bold text-xl mb-1">Clique para Gravar</h4>
-                                        <p className="text-blue-100 text-sm">Abra a extensão e selecione o modo. Sem configurações complexas.</p>
+                                        <p className="text-purple-100 text-sm">Abra a extensão e selecione o modo. Sem configurações complexas.</p>
                                     </div>
                                 </div>
                                 <div className="flex gap-4">
                                     <div className="flex-shrink-0 w-10 h-10 rounded-full bg-teal-500 flex items-center justify-center font-bold text-lg">2</div>
                                     <div>
                                         <h4 className="font-bold text-xl mb-1">Edite no Navegador</h4>
-                                        <p className="text-blue-100 text-sm">Assim que parar, o vídeo abre no editor instantâneo. Corte o início e o fim em segundos se desejar.</p>
+                                        <p className="text-purple-100 text-sm">Assim que parar, o vídeo abre no editor instantâneo. Corte o início e o fim em segundos se desejar.</p>
                                     </div>
                                 </div>
                                 <div className="flex gap-4">
                                     <div className="flex-shrink-0 w-10 h-10 rounded-full bg-teal-500 flex items-center justify-center font-bold text-lg">3</div>
                                     <div>
                                         <h4 className="font-bold text-xl mb-1">Compartilhe</h4>
-                                        <p className="text-blue-100 text-sm">Gere um link do Drive ou baixe em MP4/GIF. Pronto para enviar.</p>
+                                        <p className="text-purple-100 text-sm">Gere um link do Drive ou baixe em MP4/GIF. Pronto para enviar.</p>
                                     </div>
                                 </div>
                             </div>
@@ -300,20 +293,19 @@ const Home: React.FC = () => {
                 </div>
             </section>
 
-            {/* STUDIO TEASER */}
             <section className="py-24 bg-gray-100 relative overflow-hidden">
                 <div className="container mx-auto px-4 relative z-10 text-center">
                     <span className="text-teal-600 font-bold tracking-widest uppercase text-sm mb-2 block">Precisa de mais poder?</span>
-                    <h2 className="text-4xl font-extrabold text-gray-900 mb-6">Conheça o Solutto Studio</h2>
+                    <h2 className="text-4xl font-extrabold text-gray-900 mb-6">Conheça o Kaptur Studio</h2>
                     <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto">
                         Leve suas gravações para o próximo nível com nosso editor profissional. 
                         Legendas automáticas com IA, timeline multi-track e efeitos visuais.
                     </p>
                     
                     <div className="relative inline-block group mb-12">
-                         <div className="absolute -inset-1 bg-gradient-to-r from-teal-400 to-blue-600 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+                         <div className="absolute -inset-1 bg-gradient-to-r from-teal-400 to-purple-600 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
                         <Link to="/studio" className="relative z-10 px-8 py-4 bg-gray-900 text-white rounded-lg font-bold flex items-center gap-3 hover:bg-black transition-colors">
-                            <span>Ir para Solutto Studio</span>
+                            <span>Ir para Kaptur Studio</span>
                             <i className="fa-solid fa-wand-magic-sparkles text-teal-400"></i>
                         </Link>
                     </div>
@@ -327,11 +319,10 @@ const Home: React.FC = () => {
                 </div>
             </section>
 
-            {/* CHANGELOG MODAL */}
             {showChangelog && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
                     <div className="bg-white rounded-2xl w-full max-w-lg shadow-2xl overflow-hidden animate-fade-in-up">
-                        <div className="bg-[#003B5C] p-6 flex justify-between items-center text-white">
+                        <div className="bg-[#2D1B4E] p-6 flex justify-between items-center text-white">
                             <h3 className="text-xl font-bold">Changelog</h3>
                             <button onClick={() => setShowChangelog(false)} className="hover:text-red-300">
                                 <i className="fa-solid fa-xmark text-xl"></i>

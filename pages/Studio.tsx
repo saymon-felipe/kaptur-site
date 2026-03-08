@@ -8,7 +8,7 @@ const studioFeatures: Feature[] = [
         icon: "fa-layer-group"
     },
     {
-        title: "Legendas IA",
+        title: "Legendas Automáticas",
         description: "Transcreva áudio automaticamente e gere legendas sincronizadas com um clique.",
         icon: "fa-closed-captioning"
     },
@@ -21,29 +21,24 @@ const studioFeatures: Feature[] = [
 
 const Studio: React.FC = () => {
     return (
-        <div className="bg-[#121212] min-h-screen text-gray-200 pt-20 font-sans selection:bg-blue-500 selection:text-white">
+        <div className="bg-[#121212] min-h-screen text-gray-200 pt-20 font-sans selection:bg-purple-500 selection:text-white">
             
-            {/* CINEMATIC HERO */}
             <section className="relative pt-20 pb-32 overflow-hidden">
-                {/* Background Glows */}
-                <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-blue-600/20 rounded-full blur-[120px]"></div>
-                <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-purple-600/10 rounded-full blur-[100px]"></div>
+                <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-purple-600/20 rounded-full blur-[120px]"></div>
+                <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-teal-600/10 rounded-full blur-[100px]"></div>
                 
                 <div className="container mx-auto px-4 relative z-10 text-center">
                     <h1 className="mx-auto max-w-6xl text-5xl md:text-7xl font-extrabold mb-6 tracking-tight">
-                        O Poder de um Editor <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-teal-300">Profissional</span>, direto no seu Browser.
+                        O Poder de um Editor <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-teal-300">Profissional</span>, direto no seu Browser.
                     </h1>
                     <p className="text-xl text-gray-400 max-w-3xl mx-auto mb-10 leading-relaxed">
-                        O Solutto Studio não é apenas um cortador de vídeos. É uma ferramenta de engenharia de média completa que processa tudo localmente, garantindo sua privacidade e velocidade.
+                        O Kaptur Studio não é apenas um cortador de vídeos. É uma ferramenta de engenharia de média completa que processa tudo localmente, garantindo sua privacidade e velocidade.
                     </p>
 
-                    {/* NOVO: VIDEO PREVIEW CONTAINER */}
                     <div className="mt-16 relative max-w-5xl mx-auto group">
-                        {/* Efeito de brilho externo ao passar o rato */}
-                        <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-teal-400 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
+                        <div className="absolute -inset-1 bg-gradient-to-r from-purple-500 to-teal-400 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
                         
-                        <div className="relative bg-[#0a0a0a] rounded-2xl border border-white/10 overflow-hidden shadow-2xl shadow-blue-500/10">
-                            {/* Toolbar simulada de Player Profissional */}
+                        <div className="relative bg-[#0a0a0a] rounded-2xl border border-white/10 overflow-hidden shadow-2xl shadow-purple-500/10">
                             <div className="bg-white/5 border-b border-white/5 px-4 py-2 flex items-center gap-2">
                                 <div className="flex gap-1.5">
                                     <div className="w-2.5 h-2.5 rounded-full bg-red-500/50"></div>
@@ -51,7 +46,7 @@ const Studio: React.FC = () => {
                                     <div className="w-2.5 h-2.5 rounded-full bg-green-500/50"></div>
                                 </div>
                                 <div className="text-[10px] text-gray-500 font-mono uppercase tracking-widest ml-4">
-                                    Solutto Studio Preview — Editing Mode
+                                    Kaptur Studio Preview — Editing Mode
                                 </div>
                             </div>
 
@@ -63,7 +58,8 @@ const Studio: React.FC = () => {
                                 playsInline
                                 controls
                             >
-                                <source src="/assets/videos/demonstracao-solutto-studio.webm" type="video/webm" />
+                                {/* Mudança: Arquivo renomeado para demonstracao-kaptur-studio.webm */}
+                                <source src="/assets/videos/demonstracao-kaptur-studio.webm" type="video/webm" />
                                 O seu navegador não suporta a tag de vídeo.
                             </video>
                         </div>
@@ -71,13 +67,12 @@ const Studio: React.FC = () => {
                 </div>
             </section>
 
-            {/* DARK FEATURES GRID */}
             <section className="py-24 bg-[#0a0a0a]">
                 <div className="container mx-auto px-4">
                     <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-8">
                         {studioFeatures.map((feature, idx) => (
-                            <div key={idx} className="p-6 bg-[#151515] border border-gray-800 rounded-xl hover:border-blue-500/50 transition-colors duration-300">
-                                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center mb-4 text-white shadow-lg">
+                            <div key={idx} className="p-6 bg-[#151515] border border-gray-800 rounded-xl hover:border-purple-500/50 transition-colors duration-300">
+                                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-purple-600 to-teal-600 flex items-center justify-center mb-4 text-white shadow-lg">
                                     <i className={`fa-solid ${feature.icon} text-xl`}></i>
                                 </div>
                                 <h3 className="text-xl font-bold text-white mb-2">{feature.title}</h3>
@@ -88,15 +83,14 @@ const Studio: React.FC = () => {
                 </div>
             </section>
 
-            {/* INTEGRATION SECTION */}
             <section className="py-24 border-t border-gray-900">
                 <div className="container mx-auto px-4">
                     <div className="flex flex-col md:flex-row items-center gap-16">
                         <div className="md:w-1/2">
                             <h2 className="text-3xl font-bold mb-6">Integração Nativa</h2>
                             <p className="text-gray-400 mb-8">
-                                O Solutto Studio lê diretamente os arquivos do Solutto Recorder. 
-                                Terminou de gravar? Clique em "Solutto Studio" e seu projeto já nasce configurado.
+                                O Kaptur Studio lê diretamente os arquivos do gravador. 
+                                Terminou de gravar? Clique em "Kaptur Studio" e seu projeto já nasce configurado.
                             </p>
                             <ul className="space-y-4">
                                 <li className="flex items-center gap-3 text-gray-300">
