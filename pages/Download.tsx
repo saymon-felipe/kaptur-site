@@ -22,7 +22,7 @@ const Download: React.FC = () => {
                     
                     {/* Botão de Download */}
                     <a 
-                        href="/downloads/kaptur-recorder.zip" 
+                        href="/assets/downloads/kaptur-recorder.zip" 
                         download="kaptur-recorder.zip"
                         className="inline-flex items-center gap-3 px-8 py-4 bg-[#00C0A3] hover:bg-[#00a892] text-white text-lg font-bold rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1"
                     >
